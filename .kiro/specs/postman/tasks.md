@@ -62,11 +62,11 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Decode base64url second segment, JSON-parse, extract `exp`; compute `isExpired` and `isExpiringSoon` (< 5 min).
     - _Requirements: 5.4, 5.6, 5.7_
 
-  - [ ]* 4.2 Write unit tests for `jwtDecoder`
+  - [x] 4.2 Write unit tests for `jwtDecoder`
     - Cover: valid JWT (future `exp`), expired JWT, token expiring in < 5 min, missing `exp` claim, malformed segments, empty string, non-base64 payload.
     - _Requirements: 5.4, 5.6, 5.7_
 
-  - [ ]* 4.3 Write property test — Property 4: JWT Decoding Correctness
+  - [x] 4.3 Write property test — Property 4: JWT Decoding Correctness
     - // Feature: postman, Property 4: JWT Decoding Correctness
     - Generate arbitrary strings that are not three-dot-separated valid-JSON-payload JWTs; assert `valid: false`. Generate well-formed JWTs with arbitrary integer `exp`; assert `valid: true`, `expiresAt`, `isExpired`, `isExpiringSoon` are computed correctly.
     - Run minimum 100 iterations.
