@@ -1,0 +1,159 @@
+{
+  "info": {
+    "name": "Pet Store API",
+    "description": "A sample API for managing pets in a pet store",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "List All Pets",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://api.petstore.example.com/pets?limit=20&offset=0",
+          "host": ["api", "petstore", "example", "com"],
+          "path": ["pets"],
+          "query": [
+            { "key": "limit", "value": "20" },
+            { "key": "offset", "value": "0" }
+          ]
+        },
+        "header": [
+          { "key": "Accept", "value": "application/json", "disabled": false },
+          { "key": "X-Api-Version", "value": "2024-01", "disabled": false },
+          { "key": "X-Debug", "value": "true", "disabled": true }
+        ]
+      }
+    },
+    {
+      "name": "Create Pet",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "https://api.petstore.example.com/pets"
+        },
+        "header": [
+          { "key": "Content-Type", "value": "application/json", "disabled": false },
+          { "key": "Accept", "value": "application/json", "disabled": false }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Buddy\", \"species\": \"dog\", \"age\": 3}"
+        }
+      }
+    },
+    {
+      "name": "Pet Management",
+      "item": [
+        {
+          "name": "Get Pet by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.petstore.example.com/pets/{{petId}}"
+            },
+            "header": [
+              { "key": "Accept", "value": "application/json", "disabled": false }
+            ]
+          }
+        },
+        {
+          "name": "Update Pet",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "https://api.petstore.example.com/pets/{{petId}}"
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json", "disabled": false }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"Buddy Updated\", \"age\": 4}"
+            }
+          }
+        },
+        {
+          "name": "Delete Pet",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "https://api.petstore.example.com/pets/{{petId}}"
+            },
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}", "disabled": false }
+            ]
+          }
+        },
+        {
+          "name": "Pet Photos",
+          "item": [
+            {
+              "name": "Upload Photo",
+              "request": {
+                "method": "POST",
+                "url": {
+                  "raw": "https://api.petstore.example.com/pets/{{petId}}/photos"
+                },
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    { "key": "photo", "value": "binary_data", "disabled": false },
+                    { "key": "caption", "value": "My pet photo", "disabled": false }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "List Photos",
+              "request": {
+                "method": "GET",
+                "url": "https://api.petstore.example.com/pets/{{petId}}/photos",
+                "header": [
+                  { "key": "Accept", "value": "application/json", "disabled": false }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Store Operations",
+      "item": [
+        {
+          "name": "Get Inventory",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.petstore.example.com/store/inventory"
+            },
+            "header": [
+              { "key": "Accept", "value": "application/json", "disabled": false }
+            ]
+          }
+        },
+        {
+          "name": "Place Order",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "https://api.petstore.example.com/store/orders"
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded", "disabled": false }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "petId", "value": "42", "disabled": false },
+                { "key": "quantity", "value": "1", "disabled": false }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -84,18 +84,18 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - **Other (3):** `buildDartHttp` (`http.Request`), `buildRHttr` (`httr::`), `buildPowerShell` (`Invoke-WebRequest`).
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.7_
 
-  - [ ]* 5.2 Write unit tests for `codeGenerator`
+  - [x] 5.2 Write unit tests for `codeGenerator`
     - One example per target (all 22); test auth injection (bearer, basic, none); test each body type (json, form, x-www-form-urlencoded); test variable substitution applied to URL and headers.
     - _Requirements: 7.1, 7.2, 7.3, 7.7_
 
-  - [ ]* 5.3 Write property test — Property 5: Code Generator Covers All Targets
+  - [x] 5.3 Write property test — Property 5: Code Generator Covers All Targets
     - // Feature: postman, Property 5: Code Generator Covers All Targets With Language-Appropriate Output
     - Generate arbitrary valid `Request` objects; assert `generateSnippet` returns a non-empty string for all 22 `CodeTarget` values, each containing its expected structural token.
     - Run minimum 100 iterations.
     - **Property 5: Code Generator Covers All Targets With Language-Appropriate Output**
     - **Validates: Requirements 7.1, 7.7**
 
-  - [ ]* 5.4 Write property test — Property 12: Code Generator Applies Variable Substitution
+  - [x] 5.4 Write property test — Property 12: Code Generator Applies Variable Substitution
     - // Feature: postman, Property 12: Code Generator Applies Variable Substitution
     - Generate requests containing `{{key}}` tokens in URL, headers, and body, paired with matching environment variables; assert generated snippet contains no unresolved `{{key}}` for any matched key.
     - Run minimum 100 iterations.
@@ -110,30 +110,30 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - `importOpenApi`: use `js-yaml` to parse YAML; walk `paths` → one `Request` per operation; throw `ImportError` for unsupported/invalid files.
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
-  - [ ]* 6.2 Write unit tests for `importExport`
+  - [x] 6.2 Write unit tests for `importExport`
     - Native round-trip with a fixture collection; Postman v2.1 fixture parse; OpenAPI 3.x YAML fixture parse; invalid JSON throws `ImportError`; invalid Postman structure throws `ImportError`.
     - _Requirements: 6.2, 6.3, 6.4, 6.5_
 
-  - [ ]* 6.3 Write property test — Property 3: Collection Export–Import Round-Trip
+  - [x] 6.3 Write property test — Property 3: Collection Export–Import Round-Trip
     - // Feature: postman, Property 3: Collection Export–Import Round-Trip
     - Generate arbitrary valid `Collection` objects with nested folders and requests using `fc.record`; assert `deserializeCollection(serializeCollection(c))` is deeply equal to the original.
     - Run minimum 100 iterations.
     - **Property 3: Collection Export–Import Round-Trip**
     - **Validates: Requirements 6.2, 6.6**
 
-  - [ ]* 6.4 Write integration test: Postman v2.1 import
+  - [x] 6.4 Write integration test: Postman v2.1 import
     - Load a real Postman v2.1 JSON fixture file; call `importPostmanV21`; assert collection name, folder structure, request method/URL fields are correctly mapped.
     - _Requirements: 6.3_
 
-  - [ ]* 6.5 Write integration test: OpenAPI 3.x import
+  - [x] 6.5 Write integration test: OpenAPI 3.x import
     - Load a real OpenAPI 3.x YAML fixture file; call `importOpenApi`; assert each path/operation maps to a `Request` with correct method and URL.
     - _Requirements: 6.4_
 
 - [x] 7. Checkpoint — ensure all service unit and property tests pass
   - Run `vitest --run`; confirm zero failures before proceeding to store layer. Ask the user if any questions arise.
 
-- [-] 8. Pinia stores
-  - [~] 8.1 Implement `src/stores/collections.ts`
+- [ ] 8. Pinia stores
+  - [x] 8.1 Implement `src/stores/collections.ts`
     - State: `collections: Collection[]`.
     - Actions: `init()` (load all from idb), `createCollection(name)`, `renameCollection(id, name)`, `deleteCollection(id)`, `createFolder(collectionId, parentFolderId | null, name)`, `renameFolder(id, name)`, `deleteFolder(id)`, `updateRequest(request)`, `moveItem(dragEvent)`.
     - All mutating actions: write to idb first, then update state on success; on idb error call `uiStore.showError()` and leave state unchanged (Property 9 invariant).
@@ -165,7 +165,7 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - **Property 9: Storage Failure Preserves In-Memory State**
     - **Validates: Requirements 1.9**
 
-  - [~] 8.6 Implement `src/stores/environments.ts`
+  - [ ] 8.6 Implement `src/stores/environments.ts`
     - State: `environments: Environment[]`, `activeId: string | null`.
     - Actions: `init()`, `createEnvironment(name)`, `renameEnvironment(id, name)`, `deleteEnvironment(id)`, `setActive(id)`, `upsertVariable(envId, kv)`, `deleteVariable(envId, key)`, `setJwtToken(envId, token)`, `clearJwtToken(envId)`.
     - Getter: `activeEnvironment: Environment | null`, `resolvedVariables: KeyValue[]`.
@@ -176,7 +176,7 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Test CRUD actions, `setActive`, JWT set/clear, idb-failure path.
     - _Requirements: 4.1, 5.1, 5.2_
 
-  - [~] 8.8 Implement `src/stores/ui.ts`
+  - [ ] 8.8 Implement `src/stores/ui.ts`
     - State: `activeRequestId: string | null`, `unsavedChanges: boolean`, `openModal: 'environments' | 'codeGenerator' | 'importExport' | null`, `lastResponse: SendResult | null`, `loading: boolean`, `errorMessage: string | null`.
     - Actions: `setActiveRequest(id)`, `setUnsaved(flag)`, `openModal(name)`, `closeModal()`, `setResponse(r)`, `setLoading(flag)`, `showError(msg)`, `clearError()`.
     - _Requirements: 9.3, 9.4, 9.5_
