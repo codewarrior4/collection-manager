@@ -102,8 +102,8 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - **Property 12: Code Generator Applies Variable Substitution**
     - **Validates: Requirements 7.2**
 
-- [ ] 6. Service: Import / Export
-  - [-] 6.1 Implement `src/services/importExport.ts`
+- [x] 6. Service: Import / Export
+  - [x] 6.1 Implement `src/services/importExport.ts`
     - Export `serializeCollection`, `deserializeCollection`, `importPostmanV21`, `importOpenApi`.
     - `deserializeCollection`: JSON-parse + structural validation; throw `ImportError` on failure.
     - `importPostmanV21`: map Postman `item[]` tree to `Collection`; assign new UUIDs for all nodes.
@@ -129,11 +129,11 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Load a real OpenAPI 3.x YAML fixture file; call `importOpenApi`; assert each path/operation maps to a `Request` with correct method and URL.
     - _Requirements: 6.4_
 
-- [ ] 7. Checkpoint — ensure all service unit and property tests pass
+- [x] 7. Checkpoint — ensure all service unit and property tests pass
   - Run `vitest --run`; confirm zero failures before proceeding to store layer. Ask the user if any questions arise.
 
-- [ ] 8. Pinia stores
-  - [ ] 8.1 Implement `src/stores/collections.ts`
+- [-] 8. Pinia stores
+  - [~] 8.1 Implement `src/stores/collections.ts`
     - State: `collections: Collection[]`.
     - Actions: `init()` (load all from idb), `createCollection(name)`, `renameCollection(id, name)`, `deleteCollection(id)`, `createFolder(collectionId, parentFolderId | null, name)`, `renameFolder(id, name)`, `deleteFolder(id)`, `updateRequest(request)`, `moveItem(dragEvent)`.
     - All mutating actions: write to idb first, then update state on success; on idb error call `uiStore.showError()` and leave state unchanged (Property 9 invariant).
@@ -165,7 +165,7 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - **Property 9: Storage Failure Preserves In-Memory State**
     - **Validates: Requirements 1.9**
 
-  - [ ] 8.6 Implement `src/stores/environments.ts`
+  - [~] 8.6 Implement `src/stores/environments.ts`
     - State: `environments: Environment[]`, `activeId: string | null`.
     - Actions: `init()`, `createEnvironment(name)`, `renameEnvironment(id, name)`, `deleteEnvironment(id)`, `setActive(id)`, `upsertVariable(envId, kv)`, `deleteVariable(envId, key)`, `setJwtToken(envId, token)`, `clearJwtToken(envId)`.
     - Getter: `activeEnvironment: Environment | null`, `resolvedVariables: KeyValue[]`.
@@ -176,7 +176,7 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Test CRUD actions, `setActive`, JWT set/clear, idb-failure path.
     - _Requirements: 4.1, 5.1, 5.2_
 
-  - [ ] 8.8 Implement `src/stores/ui.ts`
+  - [~] 8.8 Implement `src/stores/ui.ts`
     - State: `activeRequestId: string | null`, `unsavedChanges: boolean`, `openModal: 'environments' | 'codeGenerator' | 'importExport' | null`, `lastResponse: SendResult | null`, `loading: boolean`, `errorMessage: string | null`.
     - Actions: `setActiveRequest(id)`, `setUnsaved(flag)`, `openModal(name)`, `closeModal()`, `setResponse(r)`, `setLoading(flag)`, `showError(msg)`, `clearError()`.
     - _Requirements: 9.3, 9.4, 9.5_
