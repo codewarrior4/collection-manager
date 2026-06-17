@@ -144,39 +144,39 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Mock `idb`; test each CRUD action updates state correctly; test idb-failure path leaves state unchanged; test `deleteCollection` removes all descendant ids from state.
     - _Requirements: 1.2, 1.3, 1.4, 1.7, 1.9_
 
-  - [-] 8.3 Write property test — Property 7: Entity Factory Structural Invariants
+  - [x] 8.3 Write property test — Property 7: Entity Factory Structural Invariants
     - // Feature: postman, Property 7: Entity Factory Structural Invariants
     - Generate arbitrary non-empty name strings; assert `createCollection(name)` produces valid UUID `id`, correct `name`, `folders: []`, `requests: []`. Same for `createEnvironment(name)`.
     - Run minimum 100 iterations.
     - **Property 7: Entity Factory Structural Invariants**
     - **Validates: Requirements 1.2, 4.1**
 
-  - [ ]* 8.4 Write property test — Property 8: Deletion Removes All Descendants
+  - [x] 8.4 Write property test — Property 8: Deletion Removes All Descendants
     - // Feature: postman, Property 8: Deletion Removes All Descendants
     - Generate arbitrarily nested `Collection` objects; call `deleteCollection(id)`; assert no descendant folder or request id from the original subtree remains in store state. Repeat for `deleteFolder`.
     - Run minimum 100 iterations.
     - **Property 8: Deletion Removes All Descendants**
     - **Validates: Requirements 1.4, 1.7**
 
-  - [ ]* 8.5 Write property test — Property 9: Storage Failure Preserves In-Memory State
+  - [x] 8.5 Write property test — Property 9: Storage Failure Preserves In-Memory State
     - // Feature: postman, Property 9: Storage Failure Preserves In-Memory State
     - Mock idb to throw on every write; dispatch arbitrary mutating actions; assert Pinia state is bit-for-bit identical to pre-action state for all mutation types.
     - Run minimum 100 iterations.
     - **Property 9: Storage Failure Preserves In-Memory State**
     - **Validates: Requirements 1.9**
 
-  - [ ] 8.6 Implement `src/stores/environments.ts`
+  - [x] 8.6 Implement `src/stores/environments.ts`
     - State: `environments: Environment[]`, `activeId: string | null`.
     - Actions: `init()`, `createEnvironment(name)`, `renameEnvironment(id, name)`, `deleteEnvironment(id)`, `setActive(id)`, `upsertVariable(envId, kv)`, `deleteVariable(envId, key)`, `setJwtToken(envId, token)`, `clearJwtToken(envId)`.
     - Getter: `activeEnvironment: Environment | null`, `resolvedVariables: KeyValue[]`.
     - Same idb-first write pattern as collectionsStore.
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 5.1, 5.2, 8.1_
 
-  - [ ]* 8.7 Write unit tests for `environmentsStore`
+  - [x] 8.7 Write unit tests for `environmentsStore`
     - Test CRUD actions, `setActive`, JWT set/clear, idb-failure path.
     - _Requirements: 4.1, 5.1, 5.2_
 
-  - [ ] 8.8 Implement `src/stores/ui.ts`
+  - [-] 8.8 Implement `src/stores/ui.ts`
     - State: `activeRequestId: string | null`, `unsavedChanges: boolean`, `openModal: 'environments' | 'codeGenerator' | 'importExport' | null`, `lastResponse: SendResult | null`, `loading: boolean`, `errorMessage: string | null`.
     - Actions: `setActiveRequest(id)`, `setUnsaved(flag)`, `openModal(name)`, `closeModal()`, `setResponse(r)`, `setLoading(flag)`, `showError(msg)`, `clearError()`.
     - _Requirements: 9.3, 9.4, 9.5_
