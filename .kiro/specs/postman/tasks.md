@@ -73,20 +73,24 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - **Property 4: JWT Decoding Correctness**
     - **Validates: Requirements 5.4, 5.6, 5.7**
 
-- [ ] 5. Service: Code Generator
-  - [ ] 5.1 Implement `src/services/codeGenerator.ts`
+- [x] 5. Service: Code Generator
+  - [x] 5.1 Implement `src/services/codeGenerator.ts`
     - Export `generateSnippet(request: Request, activeEnv: Environment | null, target: CodeTarget): string`.
-    - Apply `interpolate()` on all request fields; inject auth header (bearer valid non-expired JWT, or basic base64); delegate to five pure builder functions: `buildCurl`, `buildPhpCurl`, `buildLaravel`, `buildJsFetch`, `buildAxios`.
-    - Each builder returns a string containing its structural token: `curl`, `<?php`, `Http::`, `fetch(`, `axios(` respectively.
+    - Apply `interpolate()` on all request fields; inject auth header (bearer valid non-expired JWT, or basic base64); delegate to 22 pure builder functions.
+    - **Original (5):** `buildCurl` (`curl`), `buildPhpCurl` (`<?php`), `buildLaravel` (`Http::`), `buildJsFetch` (`fetch(`), `buildAxios` (`axios(`).
+    - **Backend languages (9):** `buildPythonRequests` (`requests.`), `buildPythonHttpx` (`httpx.`), `buildRubyNetHttp` (`Net::HTTP`), `buildRubyFaraday` (`Faraday`), `buildGoNetHttp` (`http.NewRequest`), `buildJavaOkHttp` (`OkHttpClient`), `buildJavaUnirest` (`Unirest.`), `buildCsharpHttpClient` (`HttpClient`), `buildRustReqwest` (`reqwest::`).
+    - **JS ecosystem (3):** `buildNodeFetch` (`node-fetch`), `buildGot` (`got.`), `buildKy` (`ky.`).
+    - **Mobile (2):** `buildSwiftUrlSession` (`URLSession`), `buildKotlinOkHttp` (`OkHttpClient`).
+    - **Other (3):** `buildDartHttp` (`http.Request`), `buildRHttr` (`httr::`), `buildPowerShell` (`Invoke-WebRequest`).
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.7_
 
   - [ ]* 5.2 Write unit tests for `codeGenerator`
-    - One example per target; test auth injection (bearer, basic, none); test each body type (json, form, x-www-form-urlencoded); test variable substitution applied to URL and headers.
+    - One example per target (all 22); test auth injection (bearer, basic, none); test each body type (json, form, x-www-form-urlencoded); test variable substitution applied to URL and headers.
     - _Requirements: 7.1, 7.2, 7.3, 7.7_
 
   - [ ]* 5.3 Write property test — Property 5: Code Generator Covers All Targets
     - // Feature: postman, Property 5: Code Generator Covers All Targets With Language-Appropriate Output
-    - Generate arbitrary valid `Request` objects; assert `generateSnippet` returns a non-empty string for all five `CodeTarget` values, each containing its expected structural token.
+    - Generate arbitrary valid `Request` objects; assert `generateSnippet` returns a non-empty string for all 22 `CodeTarget` values, each containing its expected structural token.
     - Run minimum 100 iterations.
     - **Property 5: Code Generator Covers All Targets With Language-Appropriate Output**
     - **Validates: Requirements 7.1, 7.7**
@@ -99,7 +103,7 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - **Validates: Requirements 7.2**
 
 - [ ] 6. Service: Import / Export
-  - [ ] 6.1 Implement `src/services/importExport.ts`
+  - [-] 6.1 Implement `src/services/importExport.ts`
     - Export `serializeCollection`, `deserializeCollection`, `importPostmanV21`, `importOpenApi`.
     - `deserializeCollection`: JSON-parse + structural validation; throw `ImportError` on failure.
     - `importPostmanV21`: map Postman `item[]` tree to `Collection`; assign new UUIDs for all nodes.

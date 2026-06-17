@@ -65,4 +65,31 @@ export interface SendResult {
 }
 
 // For code generator service
-export type CodeTarget = 'curl' | 'php-curl' | 'laravel' | 'js-fetch' | 'axios'
+export type CodeTarget =
+  // Original targets
+  | 'curl'
+  | 'php-curl'
+  | 'laravel'
+  | 'js-fetch'
+  | 'axios'
+  // Backend languages
+  | 'python-requests'
+  | 'python-httpx'
+  | 'ruby-net-http'
+  | 'ruby-faraday'
+  | 'go-net-http'
+  | 'java-okhttp'
+  | 'java-unirest'
+  | 'csharp-httpclient'
+  | 'rust-reqwest'
+  // JavaScript ecosystem
+  | 'node-fetch'
+  | 'got'
+  | 'ky'
+  // Mobile
+  | 'swift-urlsession'
+  | 'kotlin-okhttp'
+  // Other
+  | 'dart-http'
+  | 'r-httr'
+  | 'powershell-invoke-webrequest'

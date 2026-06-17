@@ -203,7 +203,7 @@ Emits `update:modelValue` with a new array on every change. Rows can be added wi
 
 ### CodeGeneratorModal.vue
 
-- Language tabs: cURL | PHP cURL | Laravel | JS fetch | Axios.
+- Language tabs: cURL | PHP cURL | Laravel | JS fetch | Axios | Python requests | Python httpx | Ruby Net::HTTP | Ruby Faraday | Go net/http | Java OkHttp | Java Unirest | C# HttpClient | Rust reqwest | Node fetch | got | ky | Swift URLSession | Kotlin OkHttp | Dart http | R httr | PowerShell.
 - On tab change, calls `codeGenerator.generate(request, env, language)` and displays result in a read-only `<MonacoEditor>`.
 - Copy button uses `navigator.clipboard.writeText()`.
 
@@ -369,7 +369,22 @@ Steps:
 ```ts
 // services/codeGenerator.ts
 
-export type CodeTarget = 'curl' | 'php-curl' | 'laravel' | 'js-fetch' | 'axios'
+export type CodeTarget =
+  // Original
+  | 'curl' | 'php-curl' | 'laravel' | 'js-fetch' | 'axios'
+  // Backend languages
+  | 'python-requests' | 'python-httpx'
+  | 'ruby-net-http' | 'ruby-faraday'
+  | 'go-net-http'
+  | 'java-okhttp' | 'java-unirest'
+  | 'csharp-httpclient'
+  | 'rust-reqwest'
+  // JavaScript ecosystem
+  | 'node-fetch' | 'got' | 'ky'
+  // Mobile
+  | 'swift-urlsession' | 'kotlin-okhttp'
+  // Other
+  | 'dart-http' | 'r-httr' | 'powershell-invoke-webrequest'
 
 export function generateSnippet(
   request: Request,
@@ -452,7 +467,7 @@ On any parse error, functions throw a typed `ImportError` with a human-readable 
 
 ### Property 5: Code Generator Covers All Targets With Language-Appropriate Output
 
-*For any* `Request` with a valid HTTP method and URL, `generateSnippet(request, env, target)` SHALL return a non-empty string for each of the five `CodeTarget` values (`curl`, `php-curl`, `laravel`, `js-fetch`, `axios`), and each returned string SHALL contain a target-specific structural token (`curl` for cURL, `<?php` for PHP cURL, `Http::` for Laravel, `fetch(` for JS fetch, `axios(` for Axios).
+*For any* `Request` with a valid HTTP method and URL, `generateSnippet(request, env, target)` SHALL return a non-empty string for each of the 22 `CodeTarget` values, and each returned string SHALL contain a target-specific structural token: `curl` (cURL), `<?php` (PHP cURL / Laravel), `Http::` (Laravel), `fetch(` (JS fetch / node-fetch), `axios(` (Axios), `requests.` (Python requests), `httpx.` (Python httpx), `Net::HTTP` (Ruby Net::HTTP), `Faraday` (Ruby Faraday), `http.NewRequest` (Go), `OkHttpClient` (Java OkHttp / Kotlin), `Unirest.` (Java Unirest), `HttpClient` (C#), `reqwest::` (Rust), `node-fetch` (node-fetch import), `got.` (got), `ky.` (ky), `URLSession` (Swift), `http.Request` (Dart), `httr::` (R), `Invoke-WebRequest` (PowerShell).
 
 **Validates: Requirements 7.1, 7.7**
 
@@ -570,7 +585,7 @@ Use **fast-check** (TypeScript-native, well-maintained) for universal property v
 | Property 2 — Unresolved Tokens Preserved | Templates with tokens guaranteed absent from the variable array |
 | Property 3 — Collection Round-Trip | `fc.record(…)` shaped to produce valid `Collection` objects with nested folders/requests |
 | Property 4 — JWT Decoding | `fc.string()` for invalid inputs; constructed valid JWTs with `fc.integer()` for `exp` claim |
-| Property 5 — Code Generator All Targets | `fc.record(…)` for `Request`; assert all five `CodeTarget` values produce non-empty output with structural tokens |
+| Property 5 — Code Generator All Targets | `fc.record(…)` for `Request`; assert all 22 `CodeTarget` values produce non-empty output with structural tokens |
 | Property 6 — Query String Round-Trip | `fc.array(fc.record({key: fc.string(), value: fc.string()}))` mapped to URL query strings |
 | Property 7 — Entity Factory Invariants | `fc.string({ minLength: 1 })` for name; assert UUID format and empty arrays |
 | Property 8 — Deletion Removes Descendants | `fc.record(…)` for arbitrarily nested `Collection`; assert no descendant id survives deletion |
