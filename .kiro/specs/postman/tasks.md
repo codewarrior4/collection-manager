@@ -176,12 +176,12 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Test CRUD actions, `setActive`, JWT set/clear, idb-failure path.
     - _Requirements: 4.1, 5.1, 5.2_
 
-  - [-] 8.8 Implement `src/stores/ui.ts`
+  - [x] 8.8 Implement `src/stores/ui.ts`
     - State: `activeRequestId: string | null`, `unsavedChanges: boolean`, `openModal: 'environments' | 'codeGenerator' | 'importExport' | null`, `lastResponse: SendResult | null`, `loading: boolean`, `errorMessage: string | null`.
     - Actions: `setActiveRequest(id)`, `setUnsaved(flag)`, `openModal(name)`, `closeModal()`, `setResponse(r)`, `setLoading(flag)`, `showError(msg)`, `clearError()`.
     - _Requirements: 9.3, 9.4, 9.5_
 
-  - [ ]* 8.9 Write integration test: store initialisation from IndexedDB
+  - [x] 8.9 Write integration test: store initialisation from IndexedDB
     - Seed idb with fixture collections and environments; call `collectionsStore.init()` and `environmentsStore.init()`; assert Pinia state matches seeded data before any component mounts.
     - _Requirements: 8.3_
 
