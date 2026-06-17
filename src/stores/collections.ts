@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, toRaw } from 'vue'
 import { db } from '@/db'
 import type { Collection, Folder, Request } from '@/types'
 
@@ -19,9 +19,10 @@ export interface DragEvent {
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 
-/** Deep-clone an object using structured clone (available in modern browsers and Node ≥ 17). */
+/** Deep-clone an object using structured clone (available in modern browsers and Node ≥ 17).
+ * Uses `toRaw` first to unwrap any Vue reactive proxies before cloning. */
 function deepClone<T>(value: T): T {
-  return structuredClone(value)
+  return structuredClone(toRaw(value))
 }
 
 /** Recursively collect every id in a Folder subtree (folder ids + request ids). */

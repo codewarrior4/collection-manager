@@ -140,11 +140,11 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - `createCollection` assigns a `crypto.randomUUID()` id, empty `folders: []`, empty `requests: []`.
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9_
 
-  - [ ]* 8.2 Write unit tests for `collectionsStore`
+  - [x] 8.2 Write unit tests for `collectionsStore`
     - Mock `idb`; test each CRUD action updates state correctly; test idb-failure path leaves state unchanged; test `deleteCollection` removes all descendant ids from state.
     - _Requirements: 1.2, 1.3, 1.4, 1.7, 1.9_
 
-  - [ ]* 8.3 Write property test — Property 7: Entity Factory Structural Invariants
+  - [-] 8.3 Write property test — Property 7: Entity Factory Structural Invariants
     - // Feature: postman, Property 7: Entity Factory Structural Invariants
     - Generate arbitrary non-empty name strings; assert `createCollection(name)` produces valid UUID `id`, correct `name`, `folders: []`, `requests: []`. Same for `createEnvironment(name)`.
     - Run minimum 100 iterations.
