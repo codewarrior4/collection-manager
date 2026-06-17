@@ -256,3 +256,140 @@ describe('Property 1 — edge cases with disabled variables', () => {
     )
   })
 })
+
+// Feature: postman, Property 2: Unresolved Tokens Are Preserved Unchanged
+
+/**
+ * Property 2: Unresolved Tokens Are Preserved Unchanged
+ *   For any template containing {{token}} where the token key is either absent
+ *   from the variables array or present but disabled, the original {{token}}
+ *   substring must appear unchanged in the output.
+ *
+ * Validates: Requirements 4.6
+ *
+ * Minimum iterations: 100
+ */
+
+describe('Property 2 — Unresolved Tokens Are Preserved Unchanged', () => {
+  /**
+   * Generates a token name using the same constraint as Property 1:
+   * alphanumeric + underscore identifiers.
+   */
+  const unresolvedTokenNameArb = fc.stringMatching(/^[a-zA-Z_][a-zA-Z0-9_]{0,19}$/)
+
+  /**
+   * A variable whose key deliberately differs from the target token name
+   * (so the token goes unresolved). We ensure the unrelated key never collides
+   * with the target token by appending a suffix.
+   */
+  const unrelatedVarArb = (tokenName: string) =>
+    fc
+      .record({
+        key: fc.stringMatching(/^[a-zA-Z_][a-zA-Z0-9_]{0,19}$/).filter((k) => k !== tokenName),
+        value: fc.string({ maxLength: 40 }),
+        enabled: fc.boolean(),
+      })
+
+  /**
+   * Strategy for the "absent" case: the variables array contains zero or more
+   * entries, none of which has a key matching `tokenName`.
+   */
+  const absentVarsArb = (tokenName: string) =>
+    fc.array(unrelatedVarArb(tokenName), { minLength: 0, maxLength: 5 })
+
+  /**
+   * Strategy for the "disabled" case: the variables array contains at least
+   * one entry with key === tokenName but enabled === false, plus optionally
+   * other unrelated entries.
+   */
+  const disabledVarArb = (tokenName: string) =>
+    fc
+      .tuple(
+        fc.string({ maxLength: 40 }), // value for the disabled entry
+        fc.array(unrelatedVarArb(tokenName), { minLength: 0, maxLength: 4 }),
+      )
+      .map(([value, others]) => [
+        ...others,
+        { key: tokenName, value, enabled: false as const },
+      ] as import('../../types').KeyValue[])
+
+  it('preserves {{token}} when the token key is absent from the variables array', () => {
+    fc.assert(
+      fc.property(
+        unresolvedTokenNameArb.chain((tokenName) =>
+          absentVarsArb(tokenName).map((variables) => ({ tokenName, variables })),
+        ),
+        ({ tokenName, variables }) => {
+          const template = `prefix {{${tokenName}}} suffix`
+          const { result } = interpolate(template, variables)
+
+          expect(
+            result.includes(`{{${tokenName}}}`),
+            `{{${tokenName}}} should be preserved unchanged in "${result}"`,
+          ).toBe(true)
+        },
+      ),
+      { numRuns: 100 },
+    )
+  })
+
+  it('preserves {{token}} when the token key is present but disabled (enabled: false)', () => {
+    fc.assert(
+      fc.property(
+        unresolvedTokenNameArb.chain((tokenName) =>
+          disabledVarArb(tokenName).map((variables) => ({ tokenName, variables })),
+        ),
+        ({ tokenName, variables }) => {
+          const template = `prefix {{${tokenName}}} suffix`
+          const { result } = interpolate(template, variables)
+
+          expect(
+            result.includes(`{{${tokenName}}}`),
+            `{{${tokenName}}} should be preserved unchanged in "${result}"`,
+          ).toBe(true)
+        },
+      ),
+      { numRuns: 100 },
+    )
+  })
+
+  it('adds the unresolved token to the returned unresolved Set (absent case)', () => {
+    fc.assert(
+      fc.property(
+        unresolvedTokenNameArb.chain((tokenName) =>
+          absentVarsArb(tokenName).map((variables) => ({ tokenName, variables })),
+        ),
+        ({ tokenName, variables }) => {
+          const template = `{{${tokenName}}}`
+          const { unresolved } = interpolate(template, variables)
+
+          expect(
+            unresolved.has(tokenName),
+            `"${tokenName}" should be in the unresolved Set`,
+          ).toBe(true)
+        },
+      ),
+      { numRuns: 100 },
+    )
+  })
+
+  it('adds the unresolved token to the returned unresolved Set (disabled case)', () => {
+    fc.assert(
+      fc.property(
+        unresolvedTokenNameArb.chain((tokenName) =>
+          disabledVarArb(tokenName).map((variables) => ({ tokenName, variables })),
+        ),
+        ({ tokenName, variables }) => {
+          const template = `{{${tokenName}}}`
+          const { unresolved } = interpolate(template, variables)
+
+          expect(
+            unresolved.has(tokenName),
+            `"${tokenName}" should be in the unresolved Set`,
+          ).toBe(true)
+        },
+      ),
+      { numRuns: 100 },
+    )
+  })
+})

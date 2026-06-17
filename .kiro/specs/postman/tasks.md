@@ -41,22 +41,22 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Cover: known substitutions, missing keys, disabled entries, nested-brace-like strings, empty variables array, empty template.
     - _Requirements: 2.3, 4.5, 4.6_
 
-  - [-] 3.3 Write property test — Property 1: Variable Substitution Replaces All Matching Tokens
+  - [x] 3.3 Write property test — Property 1: Variable Substitution Replaces All Matching Tokens
     - // Feature: postman, Property 1: Variable Substitution Replaces All Matching Tokens
     - Generate arbitrary templates with injected `{{key}}` tokens and matching enabled variable arrays; assert no `{{key}}` remains in result for any matched key; assert calling `interpolate` a second time on the result is idempotent.
     - Run minimum 100 iterations.
     - **Property 1: Variable Substitution Replaces All Matching Tokens**
     - **Validates: Requirements 2.3, 2.12, 4.5**
 
-  - [ ]* 3.4 Write property test — Property 2: Unresolved Tokens Are Preserved Unchanged
+  - [x] 3.4 Write property test — Property 2: Unresolved Tokens Are Preserved Unchanged
     - // Feature: postman, Property 2: Unresolved Tokens Are Preserved Unchanged
     - Generate templates containing `{{token}}` keys that are guaranteed absent from (or disabled in) the variable array; assert the original `{{token}}` substring appears unchanged in the output.
     - Run minimum 100 iterations.
     - **Property 2: Unresolved Tokens Are Preserved Unchanged**
     - **Validates: Requirements 4.6**
 
-- [ ] 4. Service: JWT Decoder
-  - [ ] 4.1 Implement `src/services/jwtDecoder.ts`
+- [x] 4. Service: JWT Decoder
+  - [x] 4.1 Implement `src/services/jwtDecoder.ts`
     - Export `decodeJwt(token: string): JwtInfo`.
     - Split on `.`; return `{ valid: false }` if segment count ≠ 3 or payload is not valid JSON.
     - Decode base64url second segment, JSON-parse, extract `exp`; compute `isExpired` and `isExpiringSoon` (< 5 min).
