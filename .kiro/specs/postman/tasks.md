@@ -23,25 +23,25 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Write a versioned upgrade helper that applies incremental migration steps inside the `idb` upgrade callback; version-1 step is a no-op (stores already created in `index.ts`).
     - _Requirements: 8.5_
 
-  - [-] 2.3 Write integration test: IndexedDB initialisation
+  - [x] 2.3 Write integration test: IndexedDB initialisation
     - Seed idb with fixture data, initialise the db module, assert both object stores exist and seeded documents are retrievable.
     - _Requirements: 8.3_
 
-  - [ ]* 2.4 Write integration test: schema migration
+  - [x] 2.4 Write integration test: schema migration
     - Seed v1 data, invoke the v2 upgrade callback, assert all v1 documents are preserved unchanged.
     - _Requirements: 8.5_
 
-- [ ] 3. Service: Variable Substitution
-  - [ ] 3.1 Implement `src/services/variableSubstitution.ts`
+- [x] 3. Service: Variable Substitution
+  - [x] 3.1 Implement `src/services/variableSubstitution.ts`
     - Export `interpolate(template: string, variables: KeyValue[]): { result: string; unresolved: Set<string> }`.
     - Use regex `/\{\{([^}]+)\}\}/g`; only substitute entries where `enabled === true`; leave unmatched tokens unchanged.
     - _Requirements: 2.3, 2.12, 4.5, 4.6_
 
-  - [ ]* 3.2 Write unit tests for `variableSubstitution`
+  - [x] 3.2 Write unit tests for `variableSubstitution`
     - Cover: known substitutions, missing keys, disabled entries, nested-brace-like strings, empty variables array, empty template.
     - _Requirements: 2.3, 4.5, 4.6_
 
-  - [ ]* 3.3 Write property test — Property 1: Variable Substitution Replaces All Matching Tokens
+  - [-] 3.3 Write property test — Property 1: Variable Substitution Replaces All Matching Tokens
     - // Feature: postman, Property 1: Variable Substitution Replaces All Matching Tokens
     - Generate arbitrary templates with injected `{{key}}` tokens and matching enabled variable arrays; assert no `{{key}}` remains in result for any matched key; assert calling `interpolate` a second time on the result is idempotent.
     - Run minimum 100 iterations.
