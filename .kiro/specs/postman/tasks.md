@@ -191,7 +191,7 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Deep-clone request; apply `interpolate()` to URL, all header values, body content; inject `Authorization` header per auth type (bearer with non-expired JWT, basic with base64); dispatch via `axios`; compute `timeMs`; map to `SendResult`; catch `AxiosError` → `{ status: 0, body: errorMessage }`.
     - _Requirements: 2.3, 2.12, 5.3, 5.6, 8.4_
 
-  - [-] 9.2 Write unit tests for `httpClient`
+  - [x] 9.2 Write unit tests for `httpClient`
     - Mock axios; test bearer injection with valid JWT; test bearer NOT injected with expired JWT; test basic auth base64; test variable substitution applied before dispatch; test AxiosError maps to status 0.
     - _Requirements: 2.12, 5.3, 5.6_
 
