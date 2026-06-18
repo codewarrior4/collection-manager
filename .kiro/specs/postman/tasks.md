@@ -185,13 +185,13 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Seed idb with fixture collections and environments; call `collectionsStore.init()` and `environmentsStore.init()`; assert Pinia state matches seeded data before any component mounts.
     - _Requirements: 8.3_
 
-- [ ] 9. Service: HTTP Client
-  - [ ] 9.1 Implement `src/services/httpClient.ts`
+- [x] 9. Service: HTTP Client
+  - [x] 9.1 Implement `src/services/httpClient.ts`
     - Export `sendRequest(request: Request, activeEnv: Environment | null): Promise<SendResult>`.
     - Deep-clone request; apply `interpolate()` to URL, all header values, body content; inject `Authorization` header per auth type (bearer with non-expired JWT, basic with base64); dispatch via `axios`; compute `timeMs`; map to `SendResult`; catch `AxiosError` → `{ status: 0, body: errorMessage }`.
     - _Requirements: 2.3, 2.12, 5.3, 5.6, 8.4_
 
-  - [ ]* 9.2 Write unit tests for `httpClient`
+  - [-] 9.2 Write unit tests for `httpClient`
     - Mock axios; test bearer injection with valid JWT; test bearer NOT injected with expired JWT; test basic auth base64; test variable substitution applied before dispatch; test AxiosError maps to status 0.
     - _Requirements: 2.12, 5.3, 5.6_
 
