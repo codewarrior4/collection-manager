@@ -195,14 +195,14 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Mock axios; test bearer injection with valid JWT; test bearer NOT injected with expired JWT; test basic auth base64; test variable substitution applied before dispatch; test AxiosError maps to status 0.
     - _Requirements: 2.12, 5.3, 5.6_
 
-  - [ ]* 9.3 Write property test — Property 10: Bearer Token Injection Follows JWT Validity
+  - [x] 9.3 Write property test — Property 10: Bearer Token Injection Follows JWT Validity
     - // Feature: postman, Property 10: Bearer Token Injection Follows JWT Validity
     - Generate valid non-expired JWTs and expired JWTs via `fc`; assert axios call args contain `Authorization: Bearer` when non-expired and omit it when expired, for any generated `Request` with `auth.type === 'bearer'`.
     - Run minimum 100 iterations.
     - **Property 10: Bearer Token Injection Follows JWT Validity**
     - **Validates: Requirements 5.3, 5.6**
 
-- [ ] 10. Checkpoint — ensure all store and HTTP client tests pass
+- [-] 10. Checkpoint — ensure all store and HTTP client tests pass
   - Run `vitest --run`; confirm zero failures before proceeding to UI components. Ask the user if any questions arise.
 
 - [ ] 11. Shared UI components
