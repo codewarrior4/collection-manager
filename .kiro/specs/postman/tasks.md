@@ -227,20 +227,20 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Displays `uiStore.errorMessage`; auto-dismisses after 5 s; supports manual close.
     - _Requirements: 1.9_
 
-- [ ] 12. Application shell components
-  - [ ] 12.1 Implement `src/components/shell/AppTopbar.vue`
+- [x] 12. Application shell components
+  - [x] 12.1 Implement `src/components/shell/AppTopbar.vue`
     - Show application name; render environment switcher `<select>` populated from `environmentsStore.environments` plus "No Environment"; on change call `environmentsStore.setActive(id)`; render buttons to open Environments Modal, Import/Export Modal.
     - _Requirements: 4.2, 4.3, 9.2_
 
-  - [ ]* 12.2 Write component tests for `AppTopbar`
+  - [x] 12.2 Write component tests for `AppTopbar`
     - Assert switcher lists all environments + "No Environment"; selecting an env calls `setActive`; button click sets correct `uiStore.openModal`.
     - _Requirements: 4.2, 4.3_
 
-  - [ ] 12.3 Implement `src/components/shell/CollectionTree.vue`
+  - [x] 12.3 Implement `src/components/shell/CollectionTree.vue`
     - Recursive tree node component; expand/collapse collections and folders; click on request calls `uiStore.setActiveRequest(id)`; emit `contextmenu` events for rename/delete; use `vuedraggable` to wrap request and folder lists, calling `collectionsStore.moveItem()` on drop.
     - _Requirements: 1.8, 9.1, 9.3_
 
-  - [ ] 12.4 Implement `src/components/shell/AppSidebar.vue`
+  - [x] 12.4 Implement `src/components/shell/AppSidebar.vue`
     - Compose `<CollectionTree>`; render "New Collection" inline input at top; on submit call `collectionsStore.createCollection(name)`.
     - _Requirements: 1.2, 9.1_
 
