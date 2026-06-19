@@ -211,19 +211,19 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Render rows with key/value inputs and optional enable-checkbox; "+" button appends empty row; delete button removes row; emit `update:modelValue` on every change.
     - _Requirements: 2.7, 4.4_
 
-  - [-] 11.2 Write component tests for `KeyValueEditor`
+  - [x] 11.2 Write component tests for `KeyValueEditor`
     - Test add row, remove row, toggle enabled checkbox, `update:modelValue` emit value correctness.
     - _Requirements: 2.7, 4.4_
 
-  - [ ] 11.3 Implement `src/components/shared/MonacoEditor.vue`
+  - [x] 11.3 Implement `src/components/shared/MonacoEditor.vue`
     - Wrap `@monaco-editor/loader`; accept `modelValue`, `language`, `readOnly` props; emit `update:modelValue`; render a `<textarea>` fallback if Monaco fails to load.
     - _Requirements: 2.9, 7.4_
 
-  - [ ] 11.4 Implement `src/components/shared/JsonTree.vue`
+  - [x] 11.4 Implement `src/components/shared/JsonTree.vue`
     - Recursive component; leaf nodes for string/number/boolean/null; expandable nodes for object/array (collapsed by default at depth > 2); accepts `data`, `depth`, `label` props.
     - _Requirements: 3.3_
 
-  - [ ] 11.5 Implement `src/components/shared/Notification.vue`
+  - [x] 11.5 Implement `src/components/shared/Notification.vue`
     - Displays `uiStore.errorMessage`; auto-dismisses after 5 s; supports manual close.
     - _Requirements: 1.9_
 
