@@ -1,3 +1,122 @@
+/* ── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Urbanist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── Base resets ──────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Urbanist', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-dark-bg text-text-primary;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  /* Light mode override */
+  .light body,
+  body.light {
+    @apply bg-light-bg text-text-inverse;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-dark-border rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-dark-muted;
+  }
+}
+
+/* ── Reusable component utilities ─────────────────────────────────────────── */
+@layer components {
+
+  /* Dot-grid texture background */
+  .bg-texture {
+    background-color: #121212;
+    background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  .bg-texture-light {
+    background-color: #F4F4F4;
+    background-image: radial-gradient(circle, #d4d4d4 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Primary CTA button */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded
+           bg-primary text-dark-bg font-sans font-semibold text-sm
+           hover:bg-primaryHover transition-colors duration-150
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  /* Ghost / outline button */
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded
+           bg-transparent border border-dark-border text-text-primary text-sm
+           hover:bg-dark-hover transition-colors duration-150;
+  }
+
+  /* Small badge for HTTP methods */
+  .method-badge {
+    @apply inline-block px-2 py-0.5 rounded text-xs font-mono font-semibold uppercase tracking-wide;
+  }
+  .method-get    { @apply method-badge bg-method-get/15    text-method-get; }
+  .method-post   { @apply method-badge bg-method-post/15   text-method-post; }
+  .method-put    { @apply method-badge bg-method-put/15    text-method-put; }
+  .method-patch  { @apply method-badge bg-method-patch/15  text-method-patch; }
+  .method-delete { @apply method-badge bg-method-delete/15 text-method-delete; }
+
+  /* Card surface */
+  .card {
+    @apply bg-dark-card rounded-lg border border-dark-border;
+  }
+
+  /* Input base style */
+  .input {
+    @apply w-full bg-dark-surface border border-dark-border rounded px-3 py-2
+           text-sm text-text-primary font-sans placeholder-dark-muted
+           focus:outline-none focus:border-primary/60 transition-colors;
+  }
+
+  /* Section label (small caps style) */
+  .section-label {
+    @apply text-xs font-sans font-semibold uppercase tracking-widest text-text-secondary;
+  }
+
+  /* Nav item */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded text-sm font-sans
+           text-text-secondary hover:text-text-primary hover:bg-dark-hover
+           transition-colors cursor-pointer;
+  }
+  .nav-item.active {
+    @apply bg-dark-active text-text-primary;
+  }
+}

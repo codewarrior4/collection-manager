@@ -202,16 +202,16 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - **Property 10: Bearer Token Injection Follows JWT Validity**
     - **Validates: Requirements 5.3, 5.6**
 
-- [-] 10. Checkpoint — ensure all store and HTTP client tests pass
+- [x] 10. Checkpoint — ensure all store and HTTP client tests pass
   - Run `vitest --run`; confirm zero failures before proceeding to UI components. Ask the user if any questions arise.
 
 - [ ] 11. Shared UI components
-  - [ ] 11.1 Implement `src/components/shared/KeyValueEditor.vue`
+  - [x] 11.1 Implement `src/components/shared/KeyValueEditor.vue`
     - Accept `modelValue: KeyValue[]`, `allowToggle`, `keyPlaceholder`, `valuePlaceholder` props.
     - Render rows with key/value inputs and optional enable-checkbox; "+" button appends empty row; delete button removes row; emit `update:modelValue` on every change.
     - _Requirements: 2.7, 4.4_
 
-  - [ ]* 11.2 Write component tests for `KeyValueEditor`
+  - [-] 11.2 Write component tests for `KeyValueEditor`
     - Test add row, remove row, toggle enabled checkbox, `update:modelValue` emit value correctness.
     - _Requirements: 2.7, 4.4_
 
