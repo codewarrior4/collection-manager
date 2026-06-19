@@ -205,7 +205,7 @@ Implementation is broken into eight incremental phases: project scaffold → dat
 - [x] 10. Checkpoint — ensure all store and HTTP client tests pass
   - Run `vitest --run`; confirm zero failures before proceeding to UI components. Ask the user if any questions arise.
 
-- [ ] 11. Shared UI components
+- [x] 11. Shared UI components
   - [x] 11.1 Implement `src/components/shared/KeyValueEditor.vue`
     - Accept `modelValue: KeyValue[]`, `allowToggle`, `keyPlaceholder`, `valuePlaceholder` props.
     - Render rows with key/value inputs and optional enable-checkbox; "+" button appends empty row; delete button removes row; emit `update:modelValue` on every change.
@@ -244,35 +244,35 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Compose `<CollectionTree>`; render "New Collection" inline input at top; on submit call `collectionsStore.createCollection(name)`.
     - _Requirements: 1.2, 9.1_
 
-- [ ] 13. Request Builder
-  - [ ] 13.1 Implement `src/components/request/RequestBuilder.vue` (shell + URL bar)
+- [x] 13. Request Builder
+  - [x] 13.1 Implement `src/components/request/RequestBuilder.vue` (shell + URL bar)
     - Read `uiStore.activeRequestId`; deep-clone into `draftRequest` ref; compute `isDirty` and sync to `uiStore.unsavedChanges`; render method `<select>` (GET/POST/PUT/PATCH/DELETE), URL input with `{{variable}}` overlay highlighting; render tab bar (Params / Headers / Body / Auth); Send button calls `sendRequest` then `uiStore.setResponse`; Save button calls `collectionsStore.updateRequest`.
     - _Requirements: 2.1, 2.2, 2.12, 2.13, 9.3, 9.4, 9.5_
 
-  - [ ] 13.2 Implement `src/components/request/ParamsTab.vue`
+  - [x] 13.2 Implement `src/components/request/ParamsTab.vue`
     - Render `<KeyValueEditor>` bound to URL query params; `watchEffect` syncs query string ↔ rows bidirectionally.
     - _Requirements: 2.4, 2.5, 2.6_
 
-  - [ ]* 13.3 Write property test — Property 6: Query String ↔ Params Round-Trip
+  - [x] 13.3 Write property test — Property 6: Query String ↔ Params Round-Trip
     - // Feature: postman, Property 6: Query String ↔ Params Round-Trip
     - Generate arbitrary arrays of URL-safe `KeyValue` pairs; serialise to query string and parse back; assert resulting key-value set is equivalent to the original.
     - Run minimum 100 iterations.
     - **Property 6: Query String ↔ Params Round-Trip**
     - **Validates: Requirements 2.5, 2.6**
 
-  - [ ] 13.4 Implement `src/components/request/HeadersTab.vue`
+  - [x] 13.4 Implement `src/components/request/HeadersTab.vue`
     - Render `<KeyValueEditor allowToggle>` bound to `draftRequest.headers`.
     - _Requirements: 2.7_
 
-  - [ ] 13.5 Implement `src/components/request/BodyTab.vue`
+  - [x] 13.5 Implement `src/components/request/BodyTab.vue`
     - Render mode `<select>` (json / form / x-www-form-urlencoded); when `json` render `<MonacoEditor language="json">`; when form render `<KeyValueEditor>`; emit changes to parent via `v-model`.
     - _Requirements: 2.8, 2.9_
 
-  - [ ] 13.6 Implement `src/components/request/AuthTab.vue`
+  - [x] 13.6 Implement `src/components/request/AuthTab.vue`
     - Render auth type `<select>` (none / bearer / basic); for bearer show token field pre-populated from `environmentsStore.activeEnvironment.jwtToken`; show JWT expiry warning/expired badge when applicable; for basic show username + password fields.
     - _Requirements: 2.10, 2.11, 5.3, 5.5_
 
-  - [ ]* 13.7 Write component tests for `RequestBuilder`
+  - [x] 13.7 Write component tests for `RequestBuilder`
     - Test URL ↔ Params tab synchronisation; dirty flag sets when URL changes; Send button dispatches `httpClient.sendRequest`; method selector renders five options; auth type selector renders three options.
     - _Requirements: 2.1, 2.5, 2.6, 9.5_
 
