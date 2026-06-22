@@ -276,16 +276,16 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Test URL ↔ Params tab synchronisation; dirty flag sets when URL changes; Send button dispatches `httpClient.sendRequest`; method selector renders five options; auth type selector renders three options.
     - _Requirements: 2.1, 2.5, 2.6, 9.5_
 
-- [-] 14. Response Viewer
-  - [ ] 14.1 Implement `src/components/response/ResponseBody.vue`
+- [x] 14. Response Viewer
+  - [x] 14.1 Implement `src/components/response/ResponseBody.vue`
     - Read `uiStore.lastResponse`; when body is valid JSON render `<JsonTree>`; otherwise render plain text; render copy button calling `navigator.clipboard.writeText`.
     - _Requirements: 3.3, 3.4, 3.6_
 
-  - [ ] 14.2 Implement `src/components/response/ResponseHeaders.vue`
+  - [x] 14.2 Implement `src/components/response/ResponseHeaders.vue`
     - Render response headers as a read-only key-value list.
     - _Requirements: 3.5_
 
-  - [ ] 14.3 Implement `src/components/response/ResponseViewer.vue`
+  - [x] 14.3 Implement `src/components/response/ResponseViewer.vue`
     - Compose `<ResponseBody>` and `<ResponseHeaders>` tabs; display status code + status text + `timeMs`; show loading spinner while `uiStore.loading`; show error message when `status === 0`.
     - _Requirements: 3.1, 3.2, 3.7, 3.8_
 
