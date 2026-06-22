@@ -132,7 +132,7 @@ Implementation is broken into eight incremental phases: project scaffold → dat
 - [x] 7. Checkpoint — ensure all service unit and property tests pass
   - Run `vitest --run`; confirm zero failures before proceeding to store layer. Ask the user if any questions arise.
 
-- [ ] 8. Pinia stores
+- [x] 8. Pinia stores
   - [x] 8.1 Implement `src/stores/collections.ts`
     - State: `collections: Collection[]`.
     - Actions: `init()` (load all from idb), `createCollection(name)`, `renameCollection(id, name)`, `deleteCollection(id)`, `createFolder(collectionId, parentFolderId | null, name)`, `renameFolder(id, name)`, `deleteFolder(id)`, `updateRequest(request)`, `moveItem(dragEvent)`.
@@ -276,7 +276,7 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Test URL ↔ Params tab synchronisation; dirty flag sets when URL changes; Send button dispatches `httpClient.sendRequest`; method selector renders five options; auth type selector renders three options.
     - _Requirements: 2.1, 2.5, 2.6, 9.5_
 
-- [ ] 14. Response Viewer
+- [-] 14. Response Viewer
   - [ ] 14.1 Implement `src/components/response/ResponseBody.vue`
     - Read `uiStore.lastResponse`; when body is valid JSON render `<JsonTree>`; otherwise render plain text; render copy button calling `navigator.clipboard.writeText`.
     - _Requirements: 3.3, 3.4, 3.6_
