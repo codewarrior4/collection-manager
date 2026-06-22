@@ -289,7 +289,7 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Compose `<ResponseBody>` and `<ResponseHeaders>` tabs; display status code + status text + `timeMs`; show loading spinner while `uiStore.loading`; show error message when `status === 0`.
     - _Requirements: 3.1, 3.2, 3.7, 3.8_
 
-  - [ ]* 14.4 Write component tests for `ResponseViewer`
+  - [x] 14.4 Write component tests for `ResponseViewer`
     - Test status/time render; JSON branch renders `<JsonTree>`; plain text branch; loading spinner visible; network error message; copy button calls clipboard API.
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.6, 3.7, 3.8_
 
