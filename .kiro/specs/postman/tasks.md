@@ -293,12 +293,12 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Test status/time render; JSON branch renders `<JsonTree>`; plain text branch; loading spinner visible; network error message; copy button calls clipboard API.
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.6, 3.7, 3.8_
 
-- [ ] 15. Modals
-  - [ ] 15.1 Implement `src/components/modals/EnvironmentsModal.vue`
+- [-] 15. Modals
+  - [-] 15.1 Implement `src/components/modals/EnvironmentsModal.vue`
     - List environments in sidebar; selecting one shows `<KeyValueEditor>` for variables and JWT token input; JWT input shows green / amber / red badge from `decodeJwt`; "Set Active" calls `environmentsStore.setActive`; save/clear JWT calls `environmentsStore.setJwtToken` / `clearJwtToken`; reject and show error for invalid JWT format.
     - _Requirements: 4.4, 5.1, 5.2, 5.4, 5.5, 5.6, 5.7_
 
-  - [ ]* 15.2 Write component tests for `EnvironmentsModal`
+  - [ ] 15.2 Write component tests for `EnvironmentsModal`
     - Test JWT badge states (valid, warning < 5 min, expired, invalid format); set JWT token calls store; clear token calls store; `setActive` called on button click.
     - _Requirements: 5.4, 5.5, 5.6, 5.7_
 
