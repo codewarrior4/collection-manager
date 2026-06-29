@@ -293,41 +293,41 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Test status/time render; JSON branch renders `<JsonTree>`; plain text branch; loading spinner visible; network error message; copy button calls clipboard API.
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.6, 3.7, 3.8_
 
-- [-] 15. Modals
-  - [ ] 15.1 Implement `src/components/modals/EnvironmentsModal.vue`
+- [x] 15. Modals
+  - [x] 15.1 Implement `src/components/modals/EnvironmentsModal.vue`
     - List environments in sidebar; selecting one shows `<KeyValueEditor>` for variables and JWT token input; JWT input shows green / amber / red badge from `decodeJwt`; "Set Active" calls `environmentsStore.setActive`; save/clear JWT calls `environmentsStore.setJwtToken` / `clearJwtToken`; reject and show error for invalid JWT format.
     - _Requirements: 4.4, 5.1, 5.2, 5.4, 5.5, 5.6, 5.7_
 
-  - [ ] 15.2 Write component tests for `EnvironmentsModal`
+  - [x] 15.2 Write component tests for `EnvironmentsModal`
     - Test JWT badge states (valid, warning < 5 min, expired, invalid format); set JWT token calls store; clear token calls store; `setActive` called on button click.
     - _Requirements: 5.4, 5.5, 5.6, 5.7_
 
-  - [ ] 15.3 Implement `src/components/modals/CodeGeneratorModal.vue`
+  - [x] 15.3 Implement `src/components/modals/CodeGeneratorModal.vue`
     - Language tabs: cURL / PHP cURL / Laravel / JS fetch / Axios; on tab change call `generateSnippet(activeRequest, activeEnv, target)` and bind result to read-only `<MonacoEditor>`; copy button calls `navigator.clipboard.writeText`; show "Could not copy" toast on clipboard failure.
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6_
 
-  - [ ]* 15.4 Write component tests for `CodeGeneratorModal`
+  - [x] 15.4 Write component tests for `CodeGeneratorModal`
     - Test Monaco renders in read-only mode; tab change updates snippet; copy button calls clipboard API.
     - _Requirements: 7.4, 7.5, 7.6_
 
-  - [ ] 15.5 Implement `src/components/modals/ImportExportModal.vue`
+  - [x] 15.5 Implement `src/components/modals/ImportExportModal.vue`
     - Export tab: list collections, click triggers `serializeCollection` + `download.ts`; Import tab: file input accepting JSON/YAML, on file load detect format (Postman v2.1 vs OpenAPI vs native) and call appropriate import function; deduplicate names with numeric suffix; display `ImportError.message` on failure; do not modify Storage on error.
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.7_
 
-  - [ ]* 15.6 Write property test — Property 11: Import Name Deduplication
+  - [-] 15.6 Write property test — Property 11: Import Name Deduplication
     - // Feature: postman, Property 11: Import Name Deduplication
     - Generate a collection name and an integer `N` (0–5) representing existing duplicates already in the store; assert the imported collection receives name `"<name> (N+1)"` and all existing collections are unmodified.
     - Run minimum 100 iterations.
     - **Property 11: Import Name Deduplication**
     - **Validates: Requirements 6.7**
 
-- [ ] 16. Root layout wiring and application entry point
-  - [ ] 16.1 Implement `src/App.vue`
+- [x] 16. Root layout wiring and application entry point
+  - [x] 16.1 Implement `src/App.vue`
     - Compose `<AppTopbar>`, `<AppSidebar>`, `<RequestBuilder>`, `<ResponseViewer>`, and all three modals via `<Teleport to="body">`; show modals conditionally based on `uiStore.openModal`; show `<Notification>` for error messages.
     - Call `collectionsStore.init()` and `environmentsStore.init()` in `onMounted` and block rendering of the sidebar until both resolve.
     - _Requirements: 8.3, 9.1, 9.2_
 
-  - [ ] 16.2 Implement `src/main.ts`
+  - [x] 16.2 Implement `src/main.ts`
     - Create Vue app; register Pinia; mount to `#app`.
     - _Requirements: 9.6_
 
@@ -339,7 +339,7 @@ Implementation is broken into eight incremental phases: project scaffold → dat
     - Simulate opening three requests sequentially via `uiStore.setActiveRequest`; assert `uiStore.activeRequestId` equals the last-opened request id.
     - _Requirements: 9.4_
 
-- [ ] 17. Final checkpoint — full test suite
+- [x] 17. Final checkpoint — full test suite
   - Run `vitest --run`; confirm all unit, property, component, integration, and smoke tests pass. Fix any failures before considering implementation complete. Ask the user if any questions arise.
 
 ## Notes

@@ -1,9 +1,66 @@
 /* ── Google Fonts ─────────────────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Urbanist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* ── Custom Theme ─────────────────────────────────────────────────────────── */
+@theme {
+  /* Brand */
+  --color-primary: #FACC14;
+  --color-primaryHover: #E6B800;
+
+  /* Dark surfaces */
+  --color-dark-bg: #121212;
+  --color-dark-surface: #1a1a1a;
+  --color-dark-card: #202020;
+  --color-dark-elevated: #272727;
+  --color-dark-border: #2e2e2e;
+  --color-dark-hover: #2a2a2a;
+  --color-dark-active: #333333;
+  --color-dark-muted: #5a5a5a;
+  --color-dark-dim: #3a3a3a;
+
+  /* Light surfaces */
+  --color-light-bg: #F4F4F4;
+  --color-light-surface: #FFFFFF;
+  --color-light-card: #F9F9F9;
+  --color-light-elevated: #FFFFFF;
+  --color-light-border: #E0E0E0;
+  --color-light-hover: #F0F0F0;
+  --color-light-active: #E8E8E8;
+  --color-light-muted: #9E9E9E;
+  --color-light-dim: #CCCCCC;
+
+  /* Text */
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: #A0A0A0;
+  --color-text-muted: #5a5a5a;
+  --color-text-inverse: #121212;
+  --color-text-light-secondary: #4B4B4B;
+
+  /* Semantic */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #3b82f6;
+
+  /* HTTP Methods */
+  --color-method-get: #22c55e;
+  --color-method-post: #3b82f6;
+  --color-method-put: #f59e0b;
+  --color-method-patch: #a855f7;
+  --color-method-delete: #ef4444;
+
+  /* Fonts */
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: Urbanist, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, monospace;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-panel: 0 4px 16px rgba(0,0,0,0.5);
+  --shadow-glow: 0 0 12px rgba(250,204,20,0.25);
+}
 
 /* ── Base resets ──────────────────────────────────────────────────────────── */
 @layer base {
@@ -12,13 +69,14 @@
   }
 
   html {
-    font-family: 'Urbanist', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-dark-bg text-text-primary;
+    background-color: var(--color-dark-bg);
+    color: var(--color-text-primary);
     margin: 0;
     min-height: 100vh;
   }
@@ -26,15 +84,16 @@
   /* Light mode override */
   .light body,
   body.light {
-    @apply bg-light-bg text-text-inverse;
+    background-color: var(--color-light-bg);
+    color: var(--color-text-inverse);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-display);
   }
 
   code, pre, .font-mono {
-    font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+    font-family: var(--font-mono);
   }
 
   /* Scrollbar styling */
@@ -46,17 +105,16 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-dark-border rounded-full;
+    background-color: var(--color-dark-border);
+    border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-dark-muted;
+    background-color: var(--color-dark-muted);
   }
 }
 
-/* ── Reusable component utilities ─────────────────────────────────────────── */
-@layer components {
-
-  /* Dot-grid texture background */
+/* ── Dot-grid texture background ──────────────────────────────────────────── */
+@layer utilities {
   .bg-texture {
     background-color: #121212;
     background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px);
@@ -67,56 +125,82 @@
     background-image: radial-gradient(circle, #d4d4d4 1px, transparent 1px);
     background-size: 20px 20px;
   }
+}
 
+/* ── Reusable component utilities ─────────────────────────────────────────── */
+@layer components {
   /* Primary CTA button */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-4 py-2 rounded
-           bg-primary text-dark-bg font-sans font-semibold text-sm
-           hover:bg-primaryHover transition-colors duration-150
-           disabled:opacity-40 disabled:cursor-not-allowed;
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded font-semibold text-sm
+           transition-colors duration-150 disabled:opacity-40 disabled:cursor-not-allowed;
+    background-color: var(--color-primary);
+    color: var(--color-dark-bg);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background-color: var(--color-primaryHover);
   }
 
   /* Ghost / outline button */
   .btn-ghost {
-    @apply inline-flex items-center gap-2 px-4 py-2 rounded
-           bg-transparent border border-dark-border text-text-primary text-sm
-           hover:bg-dark-hover transition-colors duration-150;
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded text-sm
+           bg-transparent transition-colors duration-150;
+    border: 1px solid var(--color-dark-border);
+    color: var(--color-text-primary);
+  }
+  .btn-ghost:hover {
+    background-color: var(--color-dark-hover);
   }
 
   /* Small badge for HTTP methods */
   .method-badge {
     @apply inline-block px-2 py-0.5 rounded text-xs font-mono font-semibold uppercase tracking-wide;
   }
-  .method-get    { @apply method-badge bg-method-get/15    text-method-get; }
-  .method-post   { @apply method-badge bg-method-post/15   text-method-post; }
-  .method-put    { @apply method-badge bg-method-put/15    text-method-put; }
-  .method-patch  { @apply method-badge bg-method-patch/15  text-method-patch; }
-  .method-delete { @apply method-badge bg-method-delete/15 text-method-delete; }
+  .method-get    { @apply inline-block px-2 py-0.5 rounded text-xs font-mono font-semibold uppercase tracking-wide; background-color: color-mix(in srgb, var(--color-method-get) 15%, transparent);    color: var(--color-method-get); }
+  .method-post   { @apply inline-block px-2 py-0.5 rounded text-xs font-mono font-semibold uppercase tracking-wide; background-color: color-mix(in srgb, var(--color-method-post) 15%, transparent);   color: var(--color-method-post); }
+  .method-put    { @apply inline-block px-2 py-0.5 rounded text-xs font-mono font-semibold uppercase tracking-wide; background-color: color-mix(in srgb, var(--color-method-put) 15%, transparent);    color: var(--color-method-put); }
+  .method-patch  { @apply inline-block px-2 py-0.5 rounded text-xs font-mono font-semibold uppercase tracking-wide; background-color: color-mix(in srgb, var(--color-method-patch) 15%, transparent);  color: var(--color-method-patch); }
+  .method-delete { @apply inline-block px-2 py-0.5 rounded text-xs font-mono font-semibold uppercase tracking-wide; background-color: color-mix(in srgb, var(--color-method-delete) 15%, transparent); color: var(--color-method-delete); }
 
   /* Card surface */
   .card {
-    @apply bg-dark-card rounded-lg border border-dark-border;
+    @apply rounded-lg;
+    background-color: var(--color-dark-card);
+    border: 1px solid var(--color-dark-border);
   }
 
   /* Input base style */
   .input {
-    @apply w-full bg-dark-surface border border-dark-border rounded px-3 py-2
-           text-sm text-text-primary font-sans placeholder-dark-muted
-           focus:outline-none focus:border-primary/60 transition-colors;
+    @apply w-full rounded px-3 py-2 text-sm transition-colors;
+    background-color: var(--color-dark-surface);
+    border: 1px solid var(--color-dark-border);
+    color: var(--color-text-primary);
+  }
+  .input::placeholder {
+    color: var(--color-dark-muted);
+  }
+  .input:focus {
+    outline: none;
+    border-color: color-mix(in srgb, var(--color-primary) 60%, transparent);
   }
 
   /* Section label (small caps style) */
   .section-label {
-    @apply text-xs font-sans font-semibold uppercase tracking-widest text-text-secondary;
+    @apply text-xs font-semibold uppercase tracking-widest;
+    color: var(--color-text-secondary);
   }
 
   /* Nav item */
   .nav-item {
-    @apply flex items-center gap-3 px-3 py-2 rounded text-sm font-sans
-           text-text-secondary hover:text-text-primary hover:bg-dark-hover
+    @apply flex items-center gap-3 px-3 py-2 rounded text-sm
            transition-colors cursor-pointer;
+    color: var(--color-text-secondary);
+  }
+  .nav-item:hover {
+    color: var(--color-text-primary);
+    background-color: var(--color-dark-hover);
   }
   .nav-item.active {
-    @apply bg-dark-active text-text-primary;
+    background-color: var(--color-dark-active);
+    color: var(--color-text-primary);
   }
 }

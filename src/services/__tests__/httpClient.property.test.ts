@@ -19,7 +19,7 @@
 
 import * as fc from 'fast-check'
 import { describe, expect, it, vi, beforeEach, type MockedFunction } from 'vitest'
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 import { sendRequest } from '../httpClient'
 import type { Request, Environment, KeyValue } from '../../types'
 
@@ -233,7 +233,7 @@ describe('Property 10 — Bearer Token Injection Follows JWT Validity: expired J
         fc.asyncProperty(
           bearerRequestArb,
           expiredJwtArb.chain((jwt) => envWithJwt(jwt).map((env) => ({ jwt, env }))),
-          async (request, { jwt, env }) => {
+          async (request, { env }) => {
             vi.clearAllMocks()
             mockedAxios.mockResolvedValue(fakeAxiosOk())
 

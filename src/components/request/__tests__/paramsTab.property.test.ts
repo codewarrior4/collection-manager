@@ -86,8 +86,11 @@ function serializeToQueryString(kvRows: KeyValue[]): string {
  * that could cause key collisions or value mismatches after round-trip.
  * Keys must be non-empty; values may be empty.
  */
-const urlSafeStringArb = (minLength: number) =>
-  fc.stringMatching(/^[a-zA-Z0-9\-_.~]+$/, { minLength, maxLength: 30 })
+const urlSafeStringArb = (minLen: number) =>
+  fc.stringOf(
+    fc.constantFrom(...'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.~'.split('')),
+    { minLength: minLen, maxLength: 30 },
+  )
 
 const urlSafeKeyArb = urlSafeStringArb(1)
 const urlSafeValueArb = fc.oneof(

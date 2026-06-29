@@ -51,12 +51,9 @@ function getRequest(requests: Request[], name: string): Request {
 // ---------------------------------------------------------------------------
 
 describe('importPostmanV21 — Pet Store API fixture (integration)', () => {
-  // Parse once and reuse across all assertions
-  let collection: Collection
-
   it('parses the fixture without throwing', () => {
     expect(() => {
-      collection = importPostmanV21(fixtureJson)
+      importPostmanV21(fixtureJson)
     }).not.toThrow()
   })
 
@@ -286,11 +283,9 @@ const openApiFixturePath = join(__dirname, 'fixtures', 'openapi-3.x.yaml')
 const openApiFixtureYaml = readFileSync(openApiFixturePath, 'utf-8')
 
 describe('importOpenApi — Pet Store OpenAPI 3.x fixture (integration)', () => {
-  let collection: ReturnType<typeof importOpenApi>
-
   it('parses the fixture without throwing', () => {
     expect(() => {
-      collection = importOpenApi(openApiFixtureYaml)
+      importOpenApi(openApiFixtureYaml)
     }).not.toThrow()
   })
 

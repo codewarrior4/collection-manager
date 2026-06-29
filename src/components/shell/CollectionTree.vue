@@ -10,7 +10,7 @@ import { ref } from 'vue'
 import draggable from 'vuedraggable'
 import { useCollectionsStore, type DragEvent } from '@/stores/collections'
 import { useUiStore } from '@/stores/ui'
-import type { Collection, Folder, Request } from '@/types'
+import type { Folder, Request } from '@/types'
 
 // ─── Stores ───────────────────────────────────────────────────────────────────
 
@@ -63,10 +63,7 @@ const METHOD_COLORS: Record<string, string> = {
   PATCH:  'text-method-patch',
   DELETE: 'text-method-delete',
 }
-
-function methodColor(method: string): string {
-  return METHOD_COLORS[method.toUpperCase()] ?? 'text-text-secondary'
-}
+void METHOD_COLORS // used in sub-components
 
 // ─── Active request helpers ────────────────────────────────────────────────────
 
@@ -127,7 +124,7 @@ function onDragChange(
                transition-colors"
         :class="{ 'bg-dark-hover text-text-primary': isExpanded(collection.id) }"
         @click="toggleExpanded(collection.id)"
-        @contextmenu.prevent="($event) => {/* right-click handled via buttons */}"
+        @contextmenu.prevent="() => {/* right-click handled via buttons */}"
       >
         <!-- Chevron toggle -->
         <svg
@@ -292,7 +289,7 @@ function onDragChange(
  * FolderNode — renders a single Folder and its children recursively.
  * Uses defineComponent for recursive self-reference support.
  */
-import { defineComponent, h, ref, resolveComponent } from 'vue'
+import { defineComponent, h, resolveComponent } from 'vue'
 import draggableCmp from 'vuedraggable'
 
 export const FolderNode = defineComponent({
@@ -493,7 +490,7 @@ export const RequestNode = defineComponent({
 
   emits: ['open', 'contextmenu'],
 
-  setup(props, { emit }) {
+  setup(_props, _ctx) {
     const METHOD_COLORS: Record<string, string> = {
       GET:    'text-method-get',
       POST:   'text-method-post',

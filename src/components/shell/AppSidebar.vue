@@ -89,7 +89,6 @@ async function submitRename(): Promise<void> {
     cancelRename()
     return
   }
-  const payload = deletingPayload.value // not used here; just cancel pending delete
   deletingId.value = null
   deletingPayload.value = null
 

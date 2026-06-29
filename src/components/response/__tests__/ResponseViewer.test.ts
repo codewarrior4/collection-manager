@@ -45,7 +45,6 @@ vi.mock('@/db', () => ({
 // ─── Imports (after mocks) ────────────────────────────────────────────────────
 
 import ResponseViewer from '../ResponseViewer.vue'
-import ResponseBody from '../ResponseBody.vue'
 import { useUiStore } from '@/stores/ui'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

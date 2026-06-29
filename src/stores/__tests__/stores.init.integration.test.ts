@@ -18,7 +18,7 @@
 // before any `openDB` call runs.
 import 'fake-indexeddb/auto'
 
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
 import { IDBFactory } from 'fake-indexeddb'
 import { openDB } from 'idb'

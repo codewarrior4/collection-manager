@@ -143,33 +143,6 @@ function replaceRequestInFolder(folder: Folder, updated: Request): boolean {
   return false
 }
 
-/**
- * Remove a request by id from anywhere in a collection's tree.
- * Returns true if removed.
- */
-function removeRequestFromCollection(collection: Collection, requestId: string): boolean {
-  const idx = collection.requests.findIndex((r) => r.id === requestId)
-  if (idx !== -1) {
-    collection.requests.splice(idx, 1)
-    return true
-  }
-  for (const folder of collection.folders) {
-    if (removeRequestFromFolder(folder, requestId)) return true
-  }
-  return false
-}
-
-function removeRequestFromFolder(folder: Folder, requestId: string): boolean {
-  const idx = folder.requests.findIndex((r) => r.id === requestId)
-  if (idx !== -1) {
-    folder.requests.splice(idx, 1)
-    return true
-  }
-  for (const sub of folder.folders) {
-    if (removeRequestFromFolder(sub, requestId)) return true
-  }
-  return false
-}
 
 // ─── store ───────────────────────────────────────────────────────────────────
 

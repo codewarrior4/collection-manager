@@ -24,7 +24,7 @@
 import * as fc from 'fast-check'
 import { describe, expect, it, beforeEach, beforeAll, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
-import type { Collection, Environment } from '@/types'
+import type { Environment } from '@/types'
 
 // ─── UUID validation ────────────────────────────────────────────────────────
 
@@ -118,7 +118,7 @@ describe('Property 7 — createCollection: Entity Factory Structural Invariants'
 
         await store.createCollection(name)
 
-        const created = store.collections.find((c, idx) => idx === beforeLength)
+        const created = store.collections.find((_c, idx) => idx === beforeLength)
         expect(created).toBeDefined()
         expect(isValidUuid(created!.id)).toBe(true)
       }),

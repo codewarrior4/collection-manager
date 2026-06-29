@@ -1,0 +1,75 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "16.1 Implement `src/App.vue`": [
+      {
+        "executionId": "6bf042c7-644f-4d9a-89d8-e5ffa6ea9a8f",
+        "chatSessionId": "sess_710e1c67-80f1-4435-90d5-274209571b4f",
+        "timestamp": 1782722867381
+      },
+      {
+        "executionId": "6bf042c7-644f-4d9a-89d8-e5ffa6ea9a8f",
+        "chatSessionId": "sess_710e1c67-80f1-4435-90d5-274209571b4f",
+        "timestamp": 1782722930436
+      },
+      {
+        "executionId": "6bf042c7-644f-4d9a-89d8-e5ffa6ea9a8f",
+        "chatSessionId": "sess_710e1c67-80f1-4435-90d5-274209571b4f",
+        "timestamp": 1782726136734
+      }
+    ],
+    "16.2 Implement `src/main.ts`": [
+      {
+        "executionId": "6bf042c7-644f-4d9a-89d8-e5ffa6ea9a8f",
+        "chatSessionId": "sess_710e1c67-80f1-4435-90d5-274209571b4f",
+        "timestamp": 1782722867431
+      },
+      {
+        "executionId": "6bf042c7-644f-4d9a-89d8-e5ffa6ea9a8f",
+        "chatSessionId": "sess_710e1c67-80f1-4435-90d5-274209571b4f",
+        "timestamp": 1782722933976
+      },
+      {
+        "executionId": "6bf042c7-644f-4d9a-89d8-e5ffa6ea9a8f",
+        "chatSessionId": "sess_710e1c67-80f1-4435-90d5-274209571b4f",
+        "timestamp": 1782726137414
+      }
+    ],
+    "17. Final checkpoint — full test suite": [
+      {
+        "executionId": "6bf042c7-644f-4d9a-89d8-e5ffa6ea9a8f",
+        "chatSessionId": "sess_710e1c67-80f1-4435-90d5-274209571b4f",
+        "timestamp": 1782722867482
+      },
+      {
+        "executionId": "6bf042c7-644f-4d9a-89d8-e5ffa6ea9a8f",
+        "chatSessionId": "sess_710e1c67-80f1-4435-90d5-274209571b4f",
+        "timestamp": 1782726158436
+      },
+      {
+        "executionId": "6bf042c7-644f-4d9a-89d8-e5ffa6ea9a8f",
+        "chatSessionId": "sess_710e1c67-80f1-4435-90d5-274209571b4f",
+        "timestamp": 1782726199752
+      }
+    ],
+    "15.4 Write component tests for `CodeGeneratorModal`": [
+      {
+        "executionId": "6bf042c7-644f-4d9a-89d8-e5ffa6ea9a8f",
+        "chatSessionId": "sess_710e1c67-80f1-4435-90d5-274209571b4f",
+        "timestamp": 1782722895995
+      }
+    ],
+    "16. Root layout wiring and application entry point": [
+      {
+        "executionId": "6bf042c7-644f-4d9a-89d8-e5ffa6ea9a8f",
+        "chatSessionId": "sess_710e1c67-80f1-4435-90d5-274209571b4f",
+        "timestamp": 1782722915916
+      },
+      {
+        "executionId": "6bf042c7-644f-4d9a-89d8-e5ffa6ea9a8f",
+        "chatSessionId": "sess_710e1c67-80f1-4435-90d5-274209571b4f",
+        "timestamp": 1782726137473
+      }
+    ]
+  }
+}
